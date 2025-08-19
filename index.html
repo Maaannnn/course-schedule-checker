@@ -7,86 +7,117 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
+            margin: 20px;
+            background-color: #f5f5f5;
         }
         .container {
-            background: white;
-            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         h1 {
             color: #333;
             text-align: center;
-            margin-bottom: 10px;
         }
-        .subtitle {
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            width: 100%;
+            height: 150px;
             text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        .btn {
-            display: block;
-            background: #007cba;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            margin: 20px auto;
-            max-width: 200px;
-        }
-        .btn:hover {
-            background: #005a8b;
-        }
-        .info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
+            padding: 20px;
             margin: 20px 0;
         }
-        .info h3 {
-            margin-top: 0;
-            color: #333;
+        .upload-area.dragover {
+            border-color: #007cba;
+            background-color: #f0f8ff;
         }
-        ul {
-            margin: 10px 0;
-            padding-left: 20px;
+        #fileInput {
+            margin: 20px 0;
         }
-        li {
+        .results {
+            margin-top: 20px;
+        }
+        .error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
             margin: 5px 0;
         }
+        .error h4 {
+            margin: 0 0 10px 0;
+            color: #b71c1c;
+        }
+        .error ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .error li {
+            margin: 5px 0;
+        }
+        .success {
+            color: #388e3c;
+            background-color: #e8f5e8;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .warning {
+            color: #f57c00;
+            background-color: #fff3e0;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            background-color: #007cba;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background-color: #005a85;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>📚 排课结果检查器</h1>
-        <p class="subtitle">检测排课冲突，优化教学安排</p>
+        <h1>排课结果检查器</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">
+            支持Excel格式的排课表，自动检测课程冲突
+            <br><a href="deployment_guide.html" style="color: #007cba;">查看部署指南</a>
+        </p>
         
-        <a href="checker.html" class="btn">开始检查排课</a>
-        
-        <div class="info">
-            <h3>功能特点</h3>
-            <ul>
-                <li>自动检测科目重复和老师时间冲突</li>
-                <li>支持Excel文件(.xlsx、.xls)</li>
-                <li>纯前端处理，数据安全</li>
-                <li>冲突课程高亮显示</li>
-            </ul>
+        <div class="upload-area" id="uploadArea">
+            <p>将Excel文件拖拽到此处，或点击下方按钮选择文件</p>
+            <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
+            <button class="btn" onclick="document.getElementById('fileInput').click()">选择Excel文件</button>
         </div>
         
-        <div class="info">
-            <h3>使用说明</h3>
-            <ul>
-                <li>上传Excel格式的排课表</li>
-                <li>系统自动分析课程安排</li>
-                <li>查看检查结果和冲突详情</li>
-                <li>根据建议优化排课安排</li>
-            </ul>
-        </div>
+        <div id="results" class="results"></div>
     </div>
+
+    <script src="course_checker.js"></script>
 </body>
 </html>
