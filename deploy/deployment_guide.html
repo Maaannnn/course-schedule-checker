@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排课结果检查器 - 在线部署指南</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; text-align: center; }
+        h2 { color: #007cba; border-bottom: 2px solid #007cba; padding-bottom: 5px; }
+        .method {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid #007cba;
+        }
+        .pros { color: #28a745; }
+        .cons { color: #dc3545; }
+        .step {
+            background-color: #e3f2fd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 排课结果检查器部署指南</h1>
+        
+        <div class="highlight">
+            <strong>📌 重要提示：</strong>本工具是纯前端应用，不需要后端服务器，可以部署到任何支持静态文件的平台。
+        </div>
+
+        <h2>方案一：GitHub Pages（推荐 - 免费）</h2>
+        <div class="method">
+            <div class="pros">✅ 优点：完全免费、自动HTTPS、支持自定义域名</div>
+            <div class="cons">❌ 缺点：需要GitHub账号、国内访问可能较慢</div>
+            
+            <div class="step">
+                <strong>步骤 1：</strong>在GitHub创建新仓库
+                <br>• 访问 <code>github.com</code> 并登录
+                <br>• 点击 "New repository"
+                <br>• 仓库名建议：<code>course-schedule-checker</code>
+                <br>• 设置为Public（公开）
+            </div>
+            
+            <div class="step">
+                <strong>步骤 2：</strong>上传文件
+                <br>• 上传 <code>course_checker.html</code> 重命名为 <code>index.html</code>
+                <br>• 上传 <code>course_checker.js</code>
+                <br>• 上传说明文档
+            </div>
+            
+            <div class="step">
+                <strong>步骤 3：</strong>启用GitHub Pages
+                <br>• 进入仓库设置 (Settings)
+                <br>• 找到 "Pages" 选项
+                <br>• Source选择 "Deploy from a branch"
+                <br>• Branch选择 "main"
+            </div>
+            
+            <div class="step">
+                <strong>步骤 4：</strong>访问网站
+                <br>• 地址：<code>https://你的用户名.github.io/仓库名</code>
+                <br>• 通常5-10分钟后生效
+            </div>
+        </div>
+
+        <h2>方案二：Netlify（推荐 - 免费）</h2>
+        <div class="method">
+            <div class="pros">✅ 优点：部署简单、国内访问较快、支持拖拽部署</div>
+            <div class="cons">❌ 缺点：需要注册账号</div>
+            
+            <div class="step">
+                <strong>步骤 1：</strong>访问 <code>netlify.com</code> 并注册
+            </div>
+            
+            <div class="step">
+                <strong>步骤 2：</strong>直接拖拽部署
+                <br>• 将项目文件夹直接拖到Netlify主页
+                <br>• 或者点击 "Deploy manually" 上传zip文件
+            </div>
+            
+            <div class="step">
+                <strong>步骤 3：</strong>获取网址
+                <br>• 自动生成类似 <code>amazing-name-123456.netlify.app</code> 的网址
+                <br>• 可以自定义域名前缀
+            </div>
+        </div>
+
+        <h2>方案三：Vercel（免费）</h2>
+        <div class="method">
+            <div class="pros">✅ 优点：速度快、部署简单、支持GitHub同步</div>
+            <div class="cons">❌ 缺点：需要GitHub账号</div>
+            
+            <div class="step">
+                <strong>步骤：</strong>
+                <br>• 访问 <code>vercel.com</code>
+                <br>• 使用GitHub账号登录
+                <br>• 导入GitHub仓库
+                <br>• 自动部署完成
+            </div>
+        </div>
+
+        <h2>方案四：本地服务器（适合内网使用）</h2>
+        <div class="method">
+            <div class="pros">✅ 优点：完全内网、数据安全、访问速度快</div>
+            <div class="cons">❌ 缺点：需要服务器、需要维护</div>
+            
+            <div class="step">
+                <strong>简单方法：</strong>使用Python内置服务器
+                <br><code>cd 项目目录</code>
+                <br><code>python -m http.server 8080</code>
+                <br>然后访问 <code>http://服务器IP:8080</code>
+            </div>
+        </div>
+
+        <h2>🛠️ 快速部署工具</h2>
+        <div class="method">
+            <p>我已经为您准备了部署脚本，运行以下命令：</p>
+            <code>./deploy.sh</code>
+            <p>脚本会自动：</p>
+            <ul>
+                <li>创建部署文件夹</li>
+                <li>复制必要文件</li>
+                <li>重命名HTML文件为index.html</li>
+                <li>提供详细的部署说明</li>
+            </ul>
+        </div>
+
+        <h2>📱 移动端优化建议</h2>
+        <div class="method">
+            <p>如果需要更好的移动端体验，建议：</p>
+            <ul>
+                <li>添加PWA支持（离线使用）</li>
+                <li>优化表格在小屏幕上的显示</li>
+                <li>添加触摸友好的文件上传界面</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <strong>🎯 推荐部署流程：</strong>
+            <br>1. 新手用户：使用Netlify拖拽部署（最简单）
+            <br>2. 有GitHub的用户：使用GitHub Pages（免费且稳定）
+            <br>3. 学校内网：使用本地服务器（数据安全）
+        </div>
+    </div>
+</body>
+</html>
